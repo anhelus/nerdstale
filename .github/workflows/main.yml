@@ -1,27 +1,24 @@
-name: Publish docs using MkDocs
+name: MkDocs Build and Deploy
 
 on:
+  workflow_dispatch:
   push:
-    branches: [master]
-  pull_request:
-    branches: [master]
+    branches: [ main ]
+    paths:
+      - "mkdocs.yml"
+      - "docs/**"
+
 jobs:
   build:
-    name: Build and Publish docs
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
     steps:
-      - name: Checkout master
-        uses: actions/checkout@v3
-      - name: Setup Python
-        uses: actions/setup-python@v4
+      - name: Deploy MkDocs
+        uses: Reloaded-Project/devops-mkdocs@v1
         with:
-          python-version: "3.x"
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install mkdocs-material
-          pip install mkdocs-static-i18n
-      - name: Deploy
-        run: |
-          git pull
-          mkdocs gh-deploy
+          requirements: ./docs/requirements.txt
+          publish-to-pages: ${{ github.event_name == 'push' }}
+          checkout-current-repo: true
