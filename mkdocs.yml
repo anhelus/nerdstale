@@ -1,1 +1,47 @@
-site_name: My Docs
+site_name: Nerd's Tale
+
+theme:
+  name: material
+  language: it
+
+nav:
+  - Diagrammi delle attività: activity.md
+  - Diagrammi di sequenza: sequence.md
+  - Diagrammi dei casi d'uso: use_cases.md
+
+markdown_extensions:
+  - admonition # notes make pret4ty
+  - attr_list
+  - footnotes
+  - meta # page-specific context
+  - toc:
+      permalink: true # inserts an anchor
+  - sane_lists # better ul and ol
+  - nl2br # newline hard break
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.betterem: # better italic and bold
+      smart_enable: asterisk
+  - pymdownx.caret # insert text and superscript
+  - pymdownx.details # details and summary; work with admonition
+  - pymdownx.emoji:
+      emoji_index: !!python/name:pymdownx.emoji.twemoji
+      emoji_generator: !!python/name:pymdownx.emoji.to_svg
+  - pymdownx.highlight: # better code, instead of CodeHilite           <--------
+      anchor_linenums: false
+  - pymdownx.inlinehilite # like codehilite but inline
+  - pymdownx.magiclink # auto links
+  - pymdownx.mark # highlight text
+  - pymdownx.smartsymbols # special symbols
+  - pymdownx.superfences: # nest code blocks under other blocks   <-------
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tasklist: # better tasks lists
+      custom_checkbox: true
+  - pymdownx.tabbed: # auto tabs
+      alternate_style: true # auto tabs
+  - pymdownx.tilde # strike through cross out text
+  - tables
+  - md_in_html
