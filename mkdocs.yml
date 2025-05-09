@@ -8,6 +8,7 @@ nav:
   - Diagrammi delle attività: activity.md
   - Diagrammi di sequenza: sequence.md
   - Diagrammi dei casi d'uso: use_cases.md
+  - Diagramma delle classi: classes.md
 
 markdown_extensions:
   - admonition # notes make pret4ty
