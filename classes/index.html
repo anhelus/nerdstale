@@ -9,10 +9,8 @@
       
       
       
-        <link rel="prev" href="../activity/">
+        <link rel="prev" href="../use_cases/">
       
-      
-        <link rel="next" href="../use_cases/">
       
       
       <link rel="icon" href="../assets/images/favicon.png">
@@ -20,7 +18,7 @@
     
     
       
-        <title>Diagrammi di sequenza - Nerd's Tale</title>
+        <title>Diagramma delle classi - Nerd's Tale</title>
       
     
     
@@ -61,11 +59,6 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
-        
-        <a href="#diagramma-di-sequenza-per-il-caso-duso-gestione-combattimento" class="md-skip">
-          Vai al contenuto
-        </a>
-      
     </div>
     <div data-md-component="announce">
       
@@ -98,7 +91,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Diagrammi di sequenza
+              Diagramma delle classi
             
           </span>
         </div>
@@ -213,30 +206,10 @@
       
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    Diagrammi di sequenza
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../sequence/" class="md-nav__link">
         
   
   
@@ -247,33 +220,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Indice">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Indice
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#diagramma-di-sequenza-per-il-caso-duso-gestione-combattimento" class="md-nav__link">
-    <span class="md-ellipsis">
-      Diagramma di sequenza per il caso d'uso "Gestione combattimento"
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -304,10 +250,17 @@
       
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../classes/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -318,6 +271,7 @@
   
 
       </a>
+      
     </li>
   
 
@@ -340,23 +294,6 @@
   
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Indice
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#diagramma-di-sequenza-per-il-caso-duso-gestione-combattimento" class="md-nav__link">
-    <span class="md-ellipsis">
-      Diagramma di sequenza per il caso d'uso "Gestione combattimento"
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -371,84 +308,78 @@
 
 
 
-  <h1>Diagrammi di sequenza</h1>
+  <h1>Diagramma delle classi</h1>
 
-<h2 id="diagramma-di-sequenza-per-il-caso-duso-gestione-combattimento">Diagramma di sequenza per il caso d'uso "Gestione combattimento"<a class="headerlink" href="#diagramma-di-sequenza-per-il-caso-duso-gestione-combattimento" title="Permanent link">&para;</a></h2>
-<ol>
-<li>Si determinano i partecipanti al diagramma di sequenza.</li>
-<li>Si stabiliscono la prima parte del flusso. In particolare:<br />
-    a. Il client rileva la collisione tra sprite del personaggio e del nemico.<br />
-    b. Se ciò avviene, si scatena il combattimento, ed il controllo passa al gestore del combattimento. Contestualmente, viene mostrata l'interfaccia di combattimento.</li>
-<li>Si entra nel loop di combattimento, che dura finché questo è attivo.</li>
-<li>Viene controllato il turno.<br />
-    a. Se è il turno del giocatore, il giocatore sceglie l'azione dall'UI, il sistema calcola il risultato, l'UI viene aggiornata, ed il turno termina.<br />
-    b. Se è il turno del nemico, l'IA sceglie l'azione, il sistema calcola il risultato, l'UI viene aggiornata, ed il turno termina.</li>
-<li>Viene controllato il termine del combattimento.<br />
-    a. Il combattimento è terminato con esito vittoria.<br />
-    b. Il combattimento è terminato con esito sconfitta.<br />
-    c. Il combattimento prosegue.</li>
-</ol>
-<pre class="mermaid"><code>sequenceDiagram
-    participant UI as Giocatore (Interfaccia)
-    participant Client as Client di Gioco
-    participant CM as Gestore Combattimento
-    participant PC as Personaggio Giocatore
-    participant EC as Personaggio Nemico
+<pre class="mermaid"><code>classDiagram
+    class GestoreCombattimento {
+        + IniziaCombattimento()
+        + TerminaCombattimento()
+    }
 
-    Note over UI, Client: Giocatore si muove sulla mappa
+    class Personaggio {
+        - nome: string
+        - saluteAttuale: int
+        - saluteMassima: int
+        --
+        + FaiDanno(quantitaSalute)
+        + SubisciDanno(quantitaSalute)
+        + Cura(quantitaSalute)
+    }
 
-    Client-&gt;&gt;Client: Rileva Collisione(PC, EC)
-    activate Client
-    Client-&gt;&gt;CM: IniziaCombattimento(PC, EC)
-    activate CM
-    Note right of CM: Prepara stato battaglia, UI, ordine turni
-    Client-&gt;&gt;UI: Mostra Schermata Combattimento()
-    deactivate Client
+    class PersonaggioGiocatore
+    class PersonaggioNemico
 
-    loop Finchè Combattimento Attivo
-        CM-&gt;&gt;CM: Determina Prossimo Turno()
+    Personaggio &lt;|-- PersonaggioGiocatore : Eredita
+    Personaggio &lt;|-- PersonaggioNemico : Eredita
 
-        alt Turno Giocatore
-            CM-&gt;&gt;UI: Mostra Menu Azioni()
-            UI-&gt;&gt;CM: SelezionaAzione(azione, bersaglioID)
-            CM-&gt;&gt;PC: EseguiAzione(azione, bersaglioID)
-            activate PC
-            Note right of PC: Calcola danno/effetti
-            PC--&gt;&gt;CM: RisultatoAzione(danno, status)
-            deactivate PC
-            CM-&gt;&gt;UI: AggiornaUI(danno, status, animazioni)
+    class Statistiche {
+        - forza: int
+        - difesa: int
+        - agilita: int
+    }
 
-        else Turno Nemico
-            CM-&gt;&gt;EC: Richiedi Azione IA()
-            activate EC
-            Note right of EC: IA sceglie azione e bersaglio
-            EC--&gt;&gt;CM: AzioneScelta(azione, bersaglioID)
-            deactivate EC
-            CM-&gt;&gt;PC: ApplicaEffettoAzioneNemica(azione)
-            activate PC
-            PC--&gt;&gt;CM: RisultatoAzione(danno, status)
-            deactivate PC
-            CM-&gt;&gt;UI: AggiornaUI(danno, status, animazioni)
-        end
+    class Oggetto {
+        - nome: string
+        - descrizione: string
+    }
 
-        CM-&gt;&gt;CM: Controlla Fine Combattimento()
-        Note right of CM: Verifica HP di tutti i partecipanti
-        alt Condizione Fine Raggiunta
-                CM-&gt;&gt;Client: TerminaCombattimento(esito, ricompense?)
-                activate Client
-                alt Esito Vittoria
-                    Client-&gt;&gt;Client: AssegnaRicompense(XP, Oro, Oggetti)
-                    Client-&gt;&gt;UI: Mostra Schermata Vittoria()
-                else Esito Sconfitta
-                    Client-&gt;&gt;UI: Mostra Schermata Sconfitta()
-                    Client-&gt;&gt;Client: Gestisci Sconfitta() // Es. Carica ultimo save
-                end
-                deactivate Client
-                deactivate CM
-        end
-    end
+    class Equipaggiamento {
+        - nome: string
+    }
 
-    Client-&gt;&gt;UI: Torna alla Mappa Mondo()</code></pre>
+    class Pozione {
+        + saluteCurata: int
+    }
+
+    class Arma {
+        - dannoInflitto: int
+    }
+
+    class Armatura {
+        - dannoAssorbito: int
+    }
+
+    Arma &lt;|-- Equipaggiamento : Eredita
+    Armatura &lt;|-- Equipaggiamento : Eredita
+
+    Oggetto &lt;|-- Equipaggiamento : è un
+    Oggetto &lt;|-- Pozione : è un
+
+    class Inventario {
+        + oggetti: Map&lt;Oggetto, int&gt;
+        --
+        + AggiungiOggetto(item, quantity)
+        + RimuoviOggetto(item, quantity)
+    }
+
+    GestoreCombattimento -- PersonaggioGiocatore : gestisce
+    Personaggio -- Statistiche : ha
+    Personaggio -- Inventario : ha
+    PersonaggioGiocatore -- Equipaggiamento : equipaggia
+    Inventario -- Oggetto : contiene
+    PersonaggioNemico -- Oggetto : droppa
+
+    Equipaggiamento -- Statistiche : modifica</code></pre>
 
 
 
