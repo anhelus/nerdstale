@@ -76,3 +76,6 @@ sequenceDiagram
 
     Client->>UI: Torna alla Mappa Mondo()
 ```
+
+
+QUI HO SCRITTO LA DOCUMENTAZIONE
